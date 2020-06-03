@@ -5,11 +5,23 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
+import { ApolloProvider } from "@apollo/react-hooks";
+
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
+
+
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache()
+});
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
+            <ApolloProvider client={ client }>
+
             <App/>
+            </ApolloProvider>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
