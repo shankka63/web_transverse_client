@@ -7,7 +7,7 @@ export default class Home extends React.Component{
 
     render() {
         return(
-            <div style={{height: "100%"}}>
+            <div>
                 Salut les poulettes
                 <CheckConfig/>
             </div>
@@ -17,16 +17,17 @@ export default class Home extends React.Component{
 
 
 function CheckConfig() {
-    const { loading, error, data, networkStatus } = useQuery(GET_GRAPHQL_INFO);
+    const rep = useQuery(GET_GRAPHQL_INFO);
 
-    if (loading) return <span className="status-warning">LOADING</span>;
-    if (error) return <span className="status-error">ERROR</span>;
-    console.log(data)
+    if (rep.loading) return <span className="status-warning">LOADING</span>;
+    console.log(rep)
+    if (rep.error) return <span className="status-error">ERROR</span>;
+    console.log(rep.data)
     return <span className="status-ok">OK</span>;
 }
 
 const GET_GRAPHQL_INFO = gql`
-  {
+  query {
   crews {
     name
   }

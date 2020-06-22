@@ -1,38 +1,84 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.profil-card {
+    margin: 4rem;
+}
+
+
+body {
+    background-color: rgba(184, 226, 224, 0.26);
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    margin-top: 5rem;
+    justify-content: center;
+}
+
+.login-card {
+    text-align: center;
+    width: fit-content;
+}
+
+.login-form {
+    max-width: 300px;
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+.equipages-row {
+    cursor: pointer;
+
+}
+
+.equipages-row-selected {
+    background-color: rgba(93, 214, 255, 0.33);
+}
+
+.equipages-row:hover td{
+    background-color: rgba(93, 214, 255, 0.49) !important;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
