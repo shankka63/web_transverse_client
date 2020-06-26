@@ -1,10 +1,13 @@
 import React, {useState} from "react";
-import {Button, Card, Descriptions, Form, InputNumber, Result, Spin} from "antd";
+import {Button, Card, Descriptions, Form, InputNumber, message, Result, Spin} from "antd";
 import {useQuery} from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import StopOutlined from "@ant-design/icons/es/icons/StopOutlined";
 import {Mutation} from "react-apollo";
 
+const info = () => {
+    message.info('10 pieces gagnées');
+};
 
 const availableOp = [
     {signe: "x", resolver: (a, b) => a * b},
@@ -59,6 +62,7 @@ export default function Tresor() {
                         form={form}
                         onFinish={() => {
                             incrementScore().then(() => {
+                                info();
                                 setA(Math.floor(Math.random() * 100));
                                 setB(Math.floor(Math.random() * 100));
                                 setOP(Math.floor(Math.random() * 3));

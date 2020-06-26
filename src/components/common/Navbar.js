@@ -1,10 +1,7 @@
 import * as React from "react";
-import {Menu, Layout} from "antd";
+import {Menu} from "antd";
 
-import {
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
+import {TeamOutlined, UserOutlined,} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import LogoutOutlined from "@ant-design/icons/es/icons/LogoutOutlined";
 import PayCircleOutlined from "@ant-design/icons/es/icons/PayCircleOutlined";
@@ -15,11 +12,11 @@ export default class Navbar extends React.Component {
 
     render() {
         return (
-            <Layout.Sider className="height-100">
+                <>
                 <div className="logo">
                     <h2 style={{color: 'white'}}>La piraterie</h2>
                 </div>
-                <Menu style={{height: "100%"}} theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+                <Menu style={{height: "100%"}} theme="dark" mode="inline" defaultSelectedKeys={['4']} onClick={this.props.onClick}>
                     <Menu.Item key="0" icon={<HomeOutlined/>}>
                         <Link to={"/"}>Accueil</Link>
                     </Menu.Item>
@@ -41,7 +38,7 @@ export default class Navbar extends React.Component {
                         }} href={"/login"}>Déconnexion</a>
                     </Menu.Item>
                 </Menu>
-            </Layout.Sider>
+                    </>
         )
     }
 }
