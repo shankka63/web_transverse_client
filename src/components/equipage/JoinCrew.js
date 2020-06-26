@@ -21,8 +21,6 @@ const columns = [
 ];
 
 
-
-
 export default function JoinCrew(props) {
 
 
@@ -33,7 +31,6 @@ export default function JoinCrew(props) {
     const [errorMsg, setErrorMsg] = useState(null);
 
 
-
     return (
 
         <Modal visible={true}
@@ -42,7 +39,7 @@ export default function JoinCrew(props) {
                onOk={() => {
                    joinCrew({variables: {_id: selected}}).then(() => {
                        props.onOk();
-                   }).catch( err => {
+                   }).catch(err => {
                        setErrorMsg(err.message);
                    })
 
@@ -55,15 +52,15 @@ export default function JoinCrew(props) {
             <Input
                 placeholder={"Rechercher..."}
                 value={filter}
-                   onChange={e => {
-                       setFilter(e.target.value)
-                   }}
-                   style={{marginBottom: 5}}
+                onChange={e => {
+                    setFilter(e.target.value)
+                }}
+                style={{marginBottom: 5}}
             />
             <Table
                 loading={loading}
                 columns={columns}
-                rowKey={"_id"}
+                rowKey={(record) => record._id}
                 dataSource={(data) ?
                     data.crews.filter(it => it.name.toLowerCase().includes(filter.toLowerCase()) || it.creator.pseudo.toLowerCase().includes(filter.toLowerCase()))
                     : []

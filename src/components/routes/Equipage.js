@@ -89,6 +89,7 @@ export default function Equipage() {
        });
     });
 
+    console.log(formatedData)
     return (
         <Card className="profil-card" title={data.pirateCrew.name} extra={<Button type="danger" onClick={() => {
             leaveCrew().then(() => {
@@ -98,7 +99,7 @@ export default function Equipage() {
             })
         }}>Quittez l'équipage</Button>}>
             <span>Createur: {data.pirateCrew.creator.pseudo}</span>
-            <Table columns={tableColumns} dataSource={formatedData} rowKey={'_id'}/>
+            <Table columns={tableColumns} dataSource={formatedData} rowKey={(record) => record.worker._id}/>
         </Card>
 
     );
@@ -123,6 +124,7 @@ query {
       _id
       name
       workers {
+        _id
         pseudo
       }
     }

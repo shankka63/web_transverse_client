@@ -12,6 +12,7 @@ import {ApolloProvider} from "@apollo/react-hooks";
 import ApolloClient, {InMemoryCache} from 'apollo-boost';
 import Login from "./components/routes/Login";
 import Register from "./components/routes/Register";
+import Tresor from "./components/routes/Tresor";
 
 
 const client = new ApolloClient({
@@ -61,6 +62,9 @@ function App() {
                         </Route>
                         <Route exact path="/equipage">
                             <Equipage/>
+                        </Route>
+                        <Route exact path="/tresor">
+                            <Tresor/>
                         </Route>
 
                         <Redirect to={"/"}/>
