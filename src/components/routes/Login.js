@@ -25,8 +25,11 @@ function Login() {
     return (
 
         <div className="login-container">
-            <Card className="login-card">
-                <h1>La piraterie</h1>
+
+            <Card className="login-card spaced-card">
+                <img alt={"La piraterie"} src={"entree.png"} style={{width: "100%", height: "auto", maxWidth: "300px", marginBottom: "2rem"}}/>
+
+                {/*<h1>La piraterie</h1>*/}
                 <Form
                     name="basic"
                     className="login-form"
@@ -55,7 +58,7 @@ function Login() {
                             A l'abordage !
                         </Button>
                     </Form.Item>
-                    <Link  to={'/register'}>create account</Link>
+                    <Link  to={'/register'}>Pas de compte? Devenez pirate!</Link>
                 </Form>
                 {error}
             </Card>

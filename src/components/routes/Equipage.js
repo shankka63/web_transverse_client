@@ -38,10 +38,9 @@ export default function Equipage() {
     if (error) return <Result title={error}/>;
 
 
-    console.log(data);
     if (data.pirateCrew === null) {
         return (
-            <Empty image={<img alt={"bateau cassé"} src={"bateau.png"}/>}
+            <Empty style={{marginTop: "2rem"}} image={<img alt={"bateau cassé"} src={"bateau.png"}/>}
                    description={"Vous n'avez pas d'équipage pour le moment"} className="profil-card">
                 <div style={{display: "inline"}}>
                     <Button style={{marginRight: 10}} type={"primary"} onClick={() => {
@@ -89,7 +88,6 @@ export default function Equipage() {
        });
     });
 
-    console.log(formatedData)
     return (
         <Card className="spaced-card" title={data.pirateCrew.name} extra={<Button type="danger" onClick={() => {
             leaveCrew().then(() => {

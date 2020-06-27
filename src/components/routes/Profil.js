@@ -24,7 +24,6 @@ function ProfilParam() {
         console.error(error)
         return <Result title={"error"}/>;
     }
-    console.log(data);
     return (
         <Card className={"spaced-card"}>
 

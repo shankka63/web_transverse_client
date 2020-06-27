@@ -41,13 +41,14 @@ body {
     background-color: rgba(184, 226, 224, 0.26);
 }
 
-.logo {
-    padding-left: 20px;
-}
 
 .ant-layout {
     background-color: rgba(184, 226, 224, 0.26);
     /*background-color: #282c34;*/
+}
+
+.w-40{
+    width: 40%;
 }
 
 .flex-horizontal {
@@ -86,10 +87,13 @@ body {
 .login-card {
     text-align: center;
     width: fit-content;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-form {
     max-width: 300px;
+    margin: auto;
 }
 
 .login-form-button {

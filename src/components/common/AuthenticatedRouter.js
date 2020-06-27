@@ -32,7 +32,7 @@ export default function AuthenticatedRouter() {
             {isTabletOrMobile ?
 
                 <>
-                    <Layout.Header>
+                    <Layout.Header style={{alignItems: "center", display: "flex"}}>
                         <MenuUnfoldOutlined style={{fontSize: "20px", color: "white"}} onClick={showDrawer}/>
                     </Layout.Header>
 

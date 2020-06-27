@@ -85,7 +85,6 @@ export default function Tresor() {
                                 },
                                 () => ({
                                     validator(rule, value) {
-                                        console.log(value);
                                         if (!value || value === "") {
                                             return Promise.reject();
                                         }

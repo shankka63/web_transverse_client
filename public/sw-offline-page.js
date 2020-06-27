@@ -8,6 +8,7 @@ self.addEventListener('install', function(evt) {
     evt.waitUntil(precache().then(function () {
         // Skip waiting is necessary because we want the service worker to be active
         // and controlling the clients now, without waiting for them to be reloaded.
+        console.log("ServiceWorker now installed");
         return self.skipWaiting();
     }));
 });
@@ -32,10 +33,8 @@ self.addEventListener('fetch', function(evt) {
 function precache() {
     return caches.open(CACHE).then(function (cache) {
         return cache.addAll([
-            './index.html',
-            '/assets/logo/project.svg',
-            '/static/media/project.240f45f8.svg',
-            './offline.html'
+            '/index.html',
+            '/offline.html'
         ]);
     });
 }

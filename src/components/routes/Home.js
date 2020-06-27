@@ -15,7 +15,7 @@ export default function Home() {
 
     return (
         <div className={(isTabletOrMobile) ? "" : "flex-horizontal"}>
-            <Card title={"Meilleurs Pirates"} className="spaced-card">
+            <Card title={"Meilleurs Pirates"} className={(isTabletOrMobile) ? "spaced-card" : "spaced-card w-40"}>
                 <Query query={GET_BEST_PIRATES}>
                     {
                         rep => {
@@ -36,7 +36,7 @@ export default function Home() {
                 </Query>
             </Card>
 
-            <Card title={"Meilleurs équipages"} className="spaced-card">
+            <Card title={"Meilleurs équipages"} className={(isTabletOrMobile) ? "spaced-card" : "spaced-card w-40"}>
                 <Query query={GET_BEST_CREWS}>
                     {
                         rep => {
@@ -48,8 +48,6 @@ export default function Home() {
                                 return <Spin/>
 
                             }
-
-                            console.log(rep);
 
                             return (
                                 <Table columns={crewCol} rowKey={"_id"} dataSource={rep.data.bestCrews}
