@@ -32,22 +32,44 @@
     height: 100%;
 }
 
-.profil-card {
-    margin: 4rem;
+@font-face {
+    font-family: "XBones";
+    src: url("xbones.ttf") format("truetype");
 }
-
 
 body {
     background-color: rgba(184, 226, 224, 0.26);
 }
 
-.logo{
+.logo {
     padding-left: 20px;
 }
 
 .ant-layout {
-    /*background-color: rgba(184, 226, 224, 0.26);*/
-    background-color: #282c34;
+    background-color: rgba(184, 226, 224, 0.26);
+    /*background-color: #282c34;*/
+}
+
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.spaced-card {
+    margin: 2rem;
+}
+
+.flex-vertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .menu-drawer {
@@ -83,7 +105,7 @@ body {
     background-color: rgba(93, 214, 255, 0.33);
 }
 
-.equipages-row:hover td{
+.equipages-row:hover td {
     background-color: rgba(93, 214, 255, 0.49) !important;
 }
 

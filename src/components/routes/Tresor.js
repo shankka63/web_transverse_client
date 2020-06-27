@@ -1,9 +1,11 @@
 import React, {useState} from "react";
-import {Button, Card, Descriptions, Form, InputNumber, message, Result, Spin} from "antd";
+import {Button, Card, Form, InputNumber, message, Popover, Result, Spin} from "antd";
 import {useQuery} from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import StopOutlined from "@ant-design/icons/es/icons/StopOutlined";
 import {Mutation} from "react-apollo";
+import Coffre from "../tresor/Coffre";
+import QuestionCircleOutlined from "@ant-design/icons/es/icons/QuestionCircleOutlined";
+
 
 const info = () => {
     message.info('10 pieces gagnées');
@@ -23,7 +25,7 @@ export default function Tresor() {
     const [op, setOP] = useState(Math.floor(Math.random() * 3));
     const {qloading, error, data} = useQuery(GET_PIRATE);
 
-    if (error){
+    if (error) {
         console.error(error);
         return <Result title={"error"}/>;
     }
@@ -34,19 +36,18 @@ export default function Tresor() {
     let operation = a + " " + availableOp[op].signe + " " + b;
 
     const t = (!data) ? null : (
-        <Descriptions title="Profil">
-            <Descriptions.Item label="Pseudo">{data.pirate.pseudo}</Descriptions.Item>
-            <Descriptions.Item label="Crew">
-                {(data.pirate.crew) ? data.pirate.crew.name : <StopOutlined/>}
-            </Descriptions.Item>
-            <Descriptions.Item label="Argent">{data.pirate.score} €</Descriptions.Item>
-        </Descriptions>
+
+        <h1> Butin: {data.pirate.score} €</h1>
     );
 
     return (
-        <Card>
+        <Card className="spaced-card flex-vertical flex-center">
             {(qloading) ? <Spin/> : t}
-            <h1>{operation}</h1>
+            <div>
+                <Coffre text={operation}/>
+            </div>
+
+
             <Mutation
                 mutation={INC_SCORE}
                 update={(cache, {data: {increaseScore}}) => {
@@ -84,6 +85,10 @@ export default function Tresor() {
                                 },
                                 () => ({
                                     validator(rule, value) {
+                                        console.log(value);
+                                        if (!value || value === "") {
+                                            return Promise.reject();
+                                        }
                                         if (availableOp[op].resolver(a, b) === value) {
                                             return Promise.resolve();
                                         }
@@ -95,7 +100,10 @@ export default function Tresor() {
                             <InputNumber style={{width: "100%"}} placeholder={"Reponse"}/>
                         </Form.Item>
                         <Form.Item>
-                            <Button loading={loading} type="primary" htmlType="submit">Submit</Button>
+                            <Button loading={loading} type="primary" htmlType="submit">Ouvrir le coffre</Button>
+                            <Popover content={"Répondre à l'énigme se trouvant sur le cadenas du coffre permet de gagner du butin."}>
+                                <QuestionCircleOutlined style={{marginLeft: "1rem"}}/>
+                            </Popover>
                         </Form.Item>
                     </Form>
                 )}

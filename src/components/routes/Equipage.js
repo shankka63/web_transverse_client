@@ -29,7 +29,7 @@ const tableColumns = [
 
 
 export default function Equipage() {
-    const {loading, error, data, refetch} = useQuery(GET_GRAPHQL_INFO);
+    const {loading, error, data, refetch} = useQuery(GET_CREW);
 
     const [leaveCrew] = useMutation(LEAVE_CREW);
 
@@ -91,7 +91,7 @@ export default function Equipage() {
 
     console.log(formatedData)
     return (
-        <Card className="profil-card" title={data.pirateCrew.name} extra={<Button type="danger" onClick={() => {
+        <Card className="spaced-card" title={data.pirateCrew.name} extra={<Button type="danger" onClick={() => {
             leaveCrew().then(() => {
                 refetch();
             }).catch((err) => {
@@ -99,6 +99,8 @@ export default function Equipage() {
             })
         }}>Quittez l'équipage</Button>}>
             <span>Createur: {data.pirateCrew.creator.pseudo}</span>
+            <br/>
+            <span>Butin: {data.pirateCrew.score}</span>
             <Table columns={tableColumns} dataSource={formatedData} rowKey={(record) => record.worker._id}/>
         </Card>
 
@@ -113,10 +115,11 @@ mutation leaveCrew{
 }
 `;
 
-const GET_GRAPHQL_INFO = gql`
+const GET_CREW = gql`
 query {
   pirateCrew {
     name
+    score
     creator {
       pseudo
     }

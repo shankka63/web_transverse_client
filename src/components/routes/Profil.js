@@ -20,13 +20,13 @@ export default class Profil extends React.Component {
 function ProfilParam() {
     const {loading, error, data} = useQuery(GET_GRAPHQL_INFO);
 
-    if (error){
+    if (error) {
         console.error(error)
         return <Result title={"error"}/>;
     }
     console.log(data);
     return (
-        <Card className={"profil-card"}>
+        <Card className={"spaced-card"}>
 
             {(!loading && data) ?
                 <Descriptions title="Profil">
@@ -45,10 +45,13 @@ function ProfilParam() {
 }
 
 const GET_GRAPHQL_INFO = gql`
-query{pirate {
-    pseudo
-    score
-    crew{name}
-  
-}}
+query{
+    pirate {
+        pseudo
+        score
+        crew{
+            name
+        }
+    }
+}
 `;

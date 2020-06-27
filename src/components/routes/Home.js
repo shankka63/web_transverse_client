@@ -3,61 +3,64 @@ import gql from "graphql-tag";
 
 import {Query} from "react-apollo";
 import {Card, Result, Spin, Table} from "antd";
+import {useMediaQuery} from "react-responsive";
 
 
-export default class Home extends React.Component {
+export default function Home() {
 
 
-    render() {
-        return (
-            <div>
-                <Card title={"Meilleurs Pirates"}>
-                    <Query query={GET_BEST_PIRATES}>
-                        {
-                            rep => {
+    const isTabletOrMobile = useMediaQuery({
+        query: '(max-width: 1224px)'
+    });
 
-                                if (rep.error) {
-                                    return <Result title={"error"}/>;
-                                }
-                                if (rep.loading) {
-                                    return <Spin/>
-                                }
+    return (
+        <div className={(isTabletOrMobile) ? "" : "flex-horizontal"}>
+            <Card title={"Meilleurs Pirates"} className="spaced-card">
+                <Query query={GET_BEST_PIRATES}>
+                    {
+                        rep => {
 
-                                return (
-                                    <Table columns={piratesCol} rowKey={"_id"} dataSource={rep.data.pirates}
-                                           pagination={false}/>
-                                )
+                            if (rep.error) {
+                                return <Result title={"error"}/>;
                             }
-                        }
-                    </Query>
-                </Card>
-
-                <Card title={"Meilleurs équipages"}>
-                    <Query query={GET_BEST_CREWS}>
-                        {
-                            rep => {
-
-                                if (rep.error) {
-                                    return <Result title={"error"}/>;
-                                }
-                                if (rep.loading) {
-                                    return <Spin/>
-
-                                }
-
-                                console.log(rep);
-
-                                return (
-                                    <Table columns={crewCol} rowKey={"_id"} dataSource={rep.data.crews}
-                                           pagination={false}/>
-                                )
+                            if (rep.loading) {
+                                return <Spin/>
                             }
+
+                            return (
+                                <Table columns={piratesCol} rowKey={"_id"} dataSource={rep.data.bestPirates}
+                                       pagination={false}/>
+                            )
                         }
-                    </Query>
-                </Card>
-            </div>
-        )
-    }
+                    }
+                </Query>
+            </Card>
+
+            <Card title={"Meilleurs équipages"} className="spaced-card">
+                <Query query={GET_BEST_CREWS}>
+                    {
+                        rep => {
+
+                            if (rep.error) {
+                                return <Result title={"error"}/>;
+                            }
+                            if (rep.loading) {
+                                return <Spin/>
+
+                            }
+
+                            console.log(rep);
+
+                            return (
+                                <Table columns={crewCol} rowKey={"_id"} dataSource={rep.data.bestCrews}
+                                       pagination={false}/>
+                            )
+                        }
+                    }
+                </Query>
+            </Card>
+        </div>
+    )
 }
 
 const crewCol = [
@@ -89,16 +92,17 @@ const piratesCol = [
 
 const GET_BEST_CREWS = gql`
   query {
-  crews {
+  bestCrews {
     _id
     name
+    score
   }
 }
 `;
 
 const GET_BEST_PIRATES = gql`
   query {
-  pirates {
+  bestPirates {
     _id
     pseudo
     score
